@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { useRef, useState } from "react";
 import React from "react";
@@ -62,21 +61,15 @@ export const InputContainer = styled.input`
 interface SelectInterface {
   handleSelected: any;
   bedsState: string;
-  newValueI: any;
   valueI: boolean;
 }
 
 export const Input: React.FC<SelectInterface> = ({
   bedsState,
   handleSelected,
-  newValueI,
   valueI,
 }) => {
-  const ref = useRef(null);
-  //const selectedGuests: any = ref.current;
-
   const label = document.querySelector("#labelInput");
-
   if (valueI == true) {
     label?.classList.add("border-focus");
   } else if (valueI == false) {
@@ -85,7 +78,6 @@ export const Input: React.FC<SelectInterface> = ({
 
   let [inputAdultsValue, setInputAdultsValue] = useState(0);
   let [inputChildrenValue, setInputChildrenValue] = useState(0);
-  //let [ guests, setGuests] = useState("");
   let beds = "";
 
   const teste = (event: any) => {
@@ -111,7 +103,6 @@ export const Input: React.FC<SelectInterface> = ({
 
     let cont = inputAdultsValue + inputChildrenValue;
     beds = cont > 0 ? `${cont} beds` : "";
-    //setGuests(beds)
   };
 
   const [selected, setSelected] = React.useState(bedsState);
@@ -126,7 +117,6 @@ export const Input: React.FC<SelectInterface> = ({
       <label htmlFor="guests" id="labelInput">
         Guests
         <InputContainer
-          ref={ref}
           type="text"
           placeholder="Add guests"
           name="guests"
