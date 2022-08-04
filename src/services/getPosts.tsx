@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect} from "react";
 
-export type PostsInterface = {
+export interface PostsInterface {
     city: string,
     country: string,
     superHost: boolean,

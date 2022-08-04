@@ -28,8 +28,11 @@ function App() {
     setBedsState(selectedBeds);
   };
 
-  const numsBeds = bedsState.replace(/[^0-9]/g,'');
+  const bedsStateNum = bedsState.replace(/[^0-9]/g, "");
+  const numsBeds = bedsStateNum != "" ? parseInt(bedsStateNum) : 0;
   const city = cityState.split(", ")[0];
+
+  console.log(city);
 
   return (
     <>
@@ -43,11 +46,20 @@ function App() {
         />
       ) : null}
       <Nav>
-        <Logo src={logo} />
+        <a href="/">
+          <Logo src={logo} />
+        </a>
         <Search onClick={handleOpen}>
           <p>{cityState}</p> {/* provisório */}
           <div>
-            <Input type="text" placeholder="Add Beds" name="beds" id="beds" readOnly value={bedsState}/>
+            <Input
+              type="text"
+              placeholder="Add Beds"
+              name="beds"
+              id="beds"
+              readOnly
+              value={bedsState}
+            />
           </div>
           <FontAwesomeIcon icon="magnifying-glass" color="#EB5757" />
         </Search>
@@ -60,13 +72,17 @@ function App() {
 
       <Section>
         {posts?.map((post) =>
-          cityState != "Add Location" ? (
-            (post.city == city) && (post.beds >= parseInt(numsBeds)) ? (
+          city != "Add Location" ? (
+            numsBeds != 0 ? (
+              post.city == city && post.beds >= numsBeds ? (
+                <Card posts={post} />
+              ) : null
+            ) : post.city == city ? (
               <Card posts={post} />
             ) : null
-          ) : (
+          ) : post.beds >= numsBeds ? (
             <Card posts={post} />
-          )
+          ) : null
         )}
       </Section>
     </>

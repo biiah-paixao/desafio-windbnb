@@ -132,7 +132,6 @@ export const Input: React.FC<SelectInterface> = ({
           name="guests"
           id="guests"
           readOnly
-          defaultValue="Add guests"
           value={selected}
         />
         {valueI ? (

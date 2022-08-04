@@ -118,6 +118,7 @@ export const CardText = styled.div`
         color: #333333;
         line-height: 20px;
         padding: 6px;
+        width: 100%;
     }
 `;
 

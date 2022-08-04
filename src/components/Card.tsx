@@ -6,26 +6,27 @@ import { getPosts, PostsInterface } from '../services/getPosts'
 type CardProps = {
     posts : PostsInterface,
 }
-
-export function Card(props : CardProps) {
+export const Card: React.FC<CardProps> = ({
+    posts,
+  }) => {
 
     return (
         <>
             <CardContainer>
-                <ImageCard src={props.posts.photo}/> 
+                <ImageCard src={posts.photo}/> 
                 <CardText>
-                    {props.posts.superHost ? (
+                    {posts.superHost ? (
                         <span>Super Host</span>
                         ) : (
                         null
                     )}
-                    <p className='type'>{props.posts.type}.{props.posts.beds} beds </p>
+                    <p className='type'>{posts.type}.{posts.beds ? `${posts.beds} beds` : ''}</p>
                     <p className='rating'>
                         <FontAwesomeIcon icon={faStar} size="xs" color='#EB5757'/>
-                        {props.posts.rating}
+                        {posts.rating}
                     </p>
                     
-                    <p className='title'>{props.posts.title}</p>
+                    <p className='title'>{posts.title}</p>
                 </CardText>
             </CardContainer>
         </>
